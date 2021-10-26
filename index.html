@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100%;
+        }
+        
+        #order {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            grid-template-rows: auto;
+            gap: 5px;
+        }
+        
+        form {
+            width: 20%;
+        }
+        
+        #id {
+            display: flex;
+            justify-content: right;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>Menu</h4>
+
+    <div style="display: flex;">
+
+        <form action="">
+
+            <input name="menu" type="checkbox" value="Burger" src="https://b.zmtcdn.com/data/pictures/1/19256561/9f1494ba7955339b4eb8ca6650aaf3c2_featured_v2.jpg">
+            <label for="">Burger</label><br>
+
+            <input name="menu" type="checkbox" value="French Fries" src="https://b.zmtcdn.com/data/dish_photos/b4e/7394ef525a4adcb1a1c47a850ba8fb4e.png?output-format=webp">
+            <label for="">French Fries</label><br>
+
+
+            <input name="menu" type="checkbox" value="Coldoffee" src="https://b.zmtcdn.com/data/dish_photos/516/26e9bc954b99fc9d886214bbbf618516.jpg">
+            <label for="">Coldcoffee</label><br>
+
+            <input name="menu" type="checkbox" value="Pizza" src="https://b.zmtcdn.com/data/pictures/7/18954297/d3da25fb0181bba73ec63550bad24d43_o2_featured_v2.jpg?output-format=webp">
+            <label for="">Pizza</label><br>
+
+            <input name="menu" type="checkbox" value="Meggie" src="https://b.zmtcdn.com/data/dish_photos/c5b/145e8a37a423da407c2b31f574c6dc5b.jpg?fit=around|130:130&crop=130:130;*,*">
+            <label for="">Maggie</label><br>
+
+            <input name="menu" type="checkbox" value="Coke" src="https://5.imimg.com/data5/SELLER/Default/2020/10/NY/NA/DL/17936098/600-ml-coca-cola-cold-drink-500x500.jpg">
+            <label for="">Coke</label><br>
+
+            <button onclick="fun(event)">Order food</button>
+
+        </form>
+
+        <div id="id"></div>
+
+    </div>
+
+
+    <div id="order"></div>
+
+</body>
+
+</html>
+
+<script>
+    async function fun(e) {
+        e.preventDefault();
+        let check = document.querySelectorAll('input[name="menu"]:checked');
+        let div = document.getElementById('order')
+
+        let promise = new Promise(function(resolve, reject) {
+
+
+            setTimeout(function() {
+                resolve('order placed');
+                for (let i = 0; i < check.length; i++) {
+                    let img = document.createElement('img');
+                    img.src = check[i].src;
+                    let a = Math.floor(Math.random() * 10000);
+                    document.getElementById('id').textContent = "Order" + " " + "Id" + ":" + a;
+
+                    div.append(img);
+                }
+            }, 2000);
+
+        })
+        let res = await promise;
+        console.log("Res: ", res)
+
+
+    }
+</script>
